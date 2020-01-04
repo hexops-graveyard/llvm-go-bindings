@@ -41,20 +41,21 @@ Work in progress.
 
 ## Building from source
 
-Clone this repository, and from a shell execute:
+This will download 1.5 GiB (the LLVM Git repository) and on a modern i7 laptop (i7-9750H + 16 GB RAM) will take approximately 60 minutes to complete.
+
+From a shell, execute:
 
 ```sh
-cd llvm-go-bindings
-./install.sh
+curl -Ls https://github.com/hexops/llvm-go-bindings/raw/master/installer.sh | sh
 ```
 
-The bindings will be installed into `$GOPATH/src/llvm.org` and can be imported as:
+The LLVM repository will be checked out into `$GOPATH/src/llvm.org` and the bindings can be imported as:
 
 ```Go
 import "llvm.org/llvm/llvm/bindings/go/llvm"
 ```
 
-GoDoc can be viewed for now at https://godoc.org/llvm.org/llvm/bindings/go/llvm
+GoDoc can be viewed at https://godoc.org/llvm.org/llvm/bindings/go/llvm
 
 ## Known issues with Go LLVM bindings
 
