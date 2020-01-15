@@ -59,62 +59,8 @@ GoDoc can be viewed at https://godoc.org/llvm.org/llvm/bindings/go/llvm
 
 ## Known issues with Go LLVM bindings
 
-For now I have filed these here as, unfortunately, I cannot file bug reports on LLVM yet due to account registration being done over email (https://bugs.llvm.org/enter_bug.cgi):
+There are some known issues with the Go LLVM bindings, which I've filed here:
 
-> New user self-registration is disabled due to spam. For an account please email bugs-admin@lists.llvm.org with your e-mail address and full name.
-
-#### Impossible to build Go bindings on Windows using MSYS2
-
-It is currently impossible to build the Go bindings on Windows (e.g. under MSYS2) due to two issues in the build configuration/scripts:
-
-1. [`build.sh`](https://github.com/llvm/llvm-project/blob/master/llvm/bindings/go/build.sh#L11) cannot handle quoted arguments, which prevents passing `-G "MSYS Makefiles"` to the script -- making it impossible to generate MSYS-compatible Makefiles.
-2. In [`config-ix.cmake`](https://github.com/llvm/llvm-project/blob/master/llvm/cmake/config-ix.cmake#L546-L547) WIN32 (i.e. non-Cygwin environments like MSYS or native Windows) explicitly disables building the Go bindings without any way to attempt building them.
-
-A patch to resolve this issue is being maintained here: https://github.com/hexops/llvm-project/tree/llvmorg-9.0.1-windows
-
-#### LLVM Go binding documentation on godoc.org is not updating
-
-https://github.com/golang/gddo/issues/668
-
-#### Versioned Go paths are not valid
-
-According to the bindings/go/README.txt documentation:
-
-> The package path "llvm.org/llvm/bindings/go/llvm" can be used to
-> import the latest development version of LLVM from SVN. Paths such as
-> "llvm.org/llvm.v36/bindings/go/llvm" refer to released versions of LLVM.
-
-`llvm.org/llvm/bindings/go/llvm` does appear to be a valid Go package path as godoc.org is able to fetch the package contents for documentation generation:
-
-https://godoc.org/llvm.org/llvm/bindings/go/llvm
-
-But the versioned paths llvm.org/llvm.v36/bindings/go/llvm does not appear to be valid:
-
-https://godoc.org/llvm.org/llvm.v36/bindings/go/llvm
-
-This is an issue with the llvm.org website which is not responding correctly to the ?go-get=1 requests that are made. For example compare the `<meta>` tag output of:
-
-```sh
-$ curl -L https://llvm.org/llvm/bindings/go/llvm?go-get=1
-...
-<head>
-  <meta http-equiv="refresh" content="0; url=/">
-  <meta name="go-import" content="llvm.org/llvm svn https://llvm.org/svn/llvm-project/llvm/trunk">
-</head>
-...
-```
-
-vs:
-
-```sh
-$ curl -L https://llvm.org/llvm.v36/bindings/go/llvm?go-get=1
-...
-<html><head>
-<title>404 Not Found</title>
-</head><body>
-<h1>Not Found</h1>
-<p>The requested URL /llvm.v36/bindings/go/llvm was not found on this server.</p>
-<hr>
-<address>Apache/2.4.7 (Ubuntu) Server at llvm.org Port 443</address>
-</body></html>
-```
+- Impossible to build Go bindings on Windows using MSYS2: https://bugs.llvm.org/show_bug.cgi?id=44551
+  - A patch to resolve this issue is being maintained here: https://github.com/hexops/llvm-project/tree/llvmorg-9.0.1-windows
+- Versioned Go paths are not valid: https://bugs.llvm.org/show_bug.cgi?id=44550
