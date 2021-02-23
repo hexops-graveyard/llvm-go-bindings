@@ -4,7 +4,7 @@ Scripts for building the LLVM Go BIndings (including on Windows)
 
 ## Context
 
-The LLVM project [has some excellent Go bindings](https://github.com/llvm/llvm-project/tree/master/llvm/bindings/go) but, unfortunately, building them is extremely difficult for people unfamiliar with building C++ projects. Additionally, it is impossible currently to compile them on Windows with MSYS (i.e. without Cygwin).
+The LLVM project [has some excellent Go bindings](https://github.com/llvm/llvm-project/tree/main/llvm/bindings/go) but, unfortunately, building them is extremely difficult for people unfamiliar with building C++ projects. Additionally, it is impossible currently to compile them on Windows with MSYS (i.e. without Cygwin).
 
 This repository provides a script and concise instructions for building the LLVM Go bindings on Windows, Linux, and Mac OS easily.
 
